@@ -1,0 +1,50 @@
+.gantt-wrapper {
+  display: grid;
+  min-width: 1000px; /* Garante que os dias não fiquem espremidos */
+}
+
+.gantt-row {
+  display: grid;
+  /* 1fr para a label e 15 colunas iguais para os dias */
+  grid-template-columns: 120px repeat(15, 1fr);
+  position: relative;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.gantt-cell {
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #f0f0f0;
+  min-height: 60px;
+}
+
+.gantt-cell.label {
+  background-color: var(--bs-body-bg);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  border-right: 2px solid #dee2e6;
+}
+
+.gantt-bar {
+  position: absolute;
+  top: 15px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 1;
+  pointer-events: none; /* Evita que a barra bloqueie cliques no grid */
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Modo Escuro */
+[data-bs-theme='dark'] .gantt-cell.label {
+  background-color: #212529;
+}

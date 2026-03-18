@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: quarto-service
+  name: quarto-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: quarto-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: quarto-service
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://user_quarto:pass_quarto@db:5432/hotel_db
+          image: backend-quarto_service:latest
+          name: ms-quarto
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              protocol: TCP

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: reserva-service
+  name: reserva-service
+spec:
+  ports:
+    - name: "8003"
+      port: 8003
+      targetPort: 8000
+  selector:
+    io.kompose.service: reserva-service
+status:
+  loadBalancer: {}
+

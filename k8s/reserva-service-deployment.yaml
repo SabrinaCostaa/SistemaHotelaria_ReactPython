@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: reserva-service
+  name: reserva-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: reserva-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: reserva-service
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://user_reserva:pass_reserva@db:5432/hotel_db
+          image: backend-reserva_service:latest
+          name: ms-reserva
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              protocol: TCP

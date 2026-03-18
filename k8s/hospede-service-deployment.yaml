@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: hospede-service
+  name: hospede-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: hospede-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: hospede-service
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://user_hospede:pass_hospede@db:5433/hotel_db
+          image: backend-hospede_service:latest 
+          name: ms-hospede
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              protocol: TCP

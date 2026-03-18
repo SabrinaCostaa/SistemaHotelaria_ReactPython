@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: limpeza-service
+  name: limpeza-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: limpeza-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: limpeza-service
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://user_limpeza:pass_limpeza@db:5432/hotel_db
+            - name: RABBITMQ_URL
+              value: amqp://guest:guest@rabbitmq:5672/
+          image: backend-limpeza_service:latest
+          name: ms-limpeza
+          imagePullPolicy: IfNotPresent 
+          ports:
+            - containerPort: 8000
+              protocol: TCP
