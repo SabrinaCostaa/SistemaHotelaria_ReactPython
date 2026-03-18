@@ -1,4 +1,4 @@
-# 🏨 Hotelaria Pro: Arquitetura de Microserviços
+# 🏨 Sistema de Hotelaria
 
 Este projeto consiste em um ecossistema de gestão hoteleira robusto, desenvolvido com foco em escalabilidade e comunicação assíncrona. A solução demonstra a integração de múltiplos serviços independentes compartilhando uma infraestrutura de dados organizada por schemas.
 
